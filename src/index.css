@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --color-canvas: #010102;
+    --color-surface-1: #0f1011;
+    --color-surface-2: #141516;
+    --color-surface-3: #18191a;
+    --color-surface-4: #191a1b;
+    --color-hairline: #23252a;
+    --color-hairline-strong: #34343a;
+    --color-hairline-tertiary: #3e3e44;
+    --color-primary: #5e6ad2;
+    --color-primary-hover: #828fff;
+    --color-primary-focus: #5e69d1;
+    --color-ink: #f7f8f8;
+    --color-ink-muted: #d0d6e0;
+    --color-ink-subtle: #8a8f98;
+    --color-ink-tertiary: #62666d;
+    --color-success: #27a644;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  body {
+    background-color: #010102;
+    color: #f7f8f8;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle Linear-style custom scrollbars for studio panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #010102;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23252a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #34343a;
+}
+
+/* Studio canvas grid backdrop */
+.studio-grid-bg {
+  background-color: #010102;
+  background-image: radial-gradient(#23252a 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ==========================================================================
+ * GPU-Composited Animated Schematic Mini-Previews (Zero-Lag CSS Loops)
+ * Subtle continuous loop (6s) + Faster hover preview (2s)
+ * ========================================================================== */
+
+@keyframes kx-float-x {
+  0%, 100% { transform: translate3d(-2.5px, 0, 0); }
+  50% { transform: translate3d(2.5px, 0, 0); }
+}
+
+@keyframes kx-float-y {
+  0%, 100% { transform: translate3d(0, -2.5px, 0); }
+  50% { transform: translate3d(0, 2.5px, 0); }
+}
+
+@keyframes kx-pulse-hero {
+  0%, 100% { transform: scale(0.95); opacity: 0.86; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes kx-spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes kx-iso-glide {
+  0%, 100% { transform: translate3d(-2px, -1.5px, 0); }
+  50% { transform: translate3d(2px, 1.5px, 0); }
+}
+
+@keyframes kx-wipe-sweep {
+  0%, 100% { transform: translate3d(-3px, 0, 0) scaleX(0.96); opacity: 0.8; }
+  50% { transform: translate3d(3px, 0, 0) scaleX(1.04); opacity: 1; }
+}
+
+.kx-anim-x {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-float-x 5.6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+.kx-anim-y {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-float-y 5.2s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+.kx-anim-hero {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-pulse-hero 4.8s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.kx-anim-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-spin-slow 14s linear infinite;
+  will-change: transform;
+}
+
+.kx-anim-iso {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-iso-glide 5.0s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  will-change: transform;
+}
+
+.kx-anim-wipe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kx-wipe-sweep 4.6s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+  will-change: transform, opacity;
+}
+
+/* Accelerate animation on template card hover or active state */
+.group:hover .kx-anim-x,
+.kx-card-active .kx-anim-x {
+  animation-duration: 1.8s;
+}
+
+.group:hover .kx-anim-y,
+.kx-card-active .kx-anim-y {
+  animation-duration: 1.7s;
+}
+
+.group:hover .kx-anim-hero,
+.kx-card-active .kx-anim-hero {
+  animation-duration: 1.5s;
+}
+
+.group:hover .kx-anim-spin,
+.kx-card-active .kx-anim-spin {
+  animation-duration: 4.5s;
+}
+
+.group:hover .kx-anim-iso,
+.kx-card-active .kx-anim-iso {
+  animation-duration: 1.6s;
+}
+
+.group:hover .kx-anim-wipe,
+.kx-card-active .kx-anim-wipe {
+  animation-duration: 1.5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kx-anim-x,
+  .kx-anim-y,
+  .kx-anim-hero,
+  .kx-anim-spin,
+  .kx-anim-iso,
+  .kx-anim-wipe {
+    animation: none !important;
+  }
+}

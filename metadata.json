@@ -1,0 +1,6 @@
+{
+  "name": "Kinetix Studio — Social Motion & React Animation Editor",
+  "description": "Professional browser and desktop-grade motion graphic studio for Instagram, X, and Threads with multi-layer timeline editing, custom cubic-bezier curves, asset management, and instant export to MP4, GIF, JSON, and React components.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
